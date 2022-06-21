@@ -19,6 +19,39 @@ package main
 
 import "fmt"
 
+func greeting(name string) {
+	fmt.Println("Hell0", name, "there !")
+}
+
+func message() string {
+	return "how are you ?"
+}
+
+func addThreeNum(a, b, c int) int {
+	return a + b + c
+}
+
+func number() int {
+	return 12
+}
+
+func numbers() (int, int) {
+	return 15, 15
+}
+
 func main() {
+	greeting("Manoj")
+
+	fmt.Println(message())
+
+	sum := addThreeNum(1, 2, 3)
+	fmt.Println("sum of three is", sum)
+
+	firstNum := number()
+
+	secondNum, thirdNum := numbers()
+
+	summ := addThreeNum(firstNum, secondNum, thirdNum)
+	fmt.Println("sum of three number is", summ)
 
 }
