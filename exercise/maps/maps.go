@@ -26,6 +26,31 @@ const (
 	Retired     = 3
 )
 
+func printServerStatus(servers map[string]int) {
+	fmt.Println()
+	fmt.Println("    --Server Status--")
+	for key, value := range servers {
+		fmt.Println(key, "is in", value, "mode")
+	}
+}
+
 func main() {
 	servers := []string{"darkstar", "aiur", "omicron", "w359", "baseline"}
+
+	mapServers := make(map[string]int)
+	for _, server := range servers {
+		mapServers[server] = Online
+	}
+
+	printServerStatus(mapServers)
+
+	mapServers["darkstar"] = Retired
+	mapServers["aiur"] = Offline
+	printServerStatus(mapServers)
+
+	for key := range mapServers {
+		mapServers[key] = Maintenance
+	}
+	printServerStatus(mapServers)
+
 }
