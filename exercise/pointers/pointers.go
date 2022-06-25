@@ -18,6 +18,43 @@ package main
 
 import "fmt"
 
-func main() {
+//* Create a structure to store items and their security tag state
+type securityTag struct {
+	status bool
+	item   string
+}
 
+//  - Security tags have two states: active (true) and inactive (false)
+const (
+	active   = true
+	inactive = false
+)
+
+func statusChange(statusPtr *securityTag) {
+	statusPtr.status = !statusPtr.status
+}
+
+func checkout(tags []securityTag) {
+	for i := 0; i < len(tags); i++ {
+		statusChange(&tags[i])
+	}
+}
+
+func main() {
+	//  - Create at least 4 items, all with active security tags
+	tag1 := securityTag{status: active, item: "bag"}
+	tag2 := securityTag{status: active, item: "pen"}
+	tag3 := securityTag{status: active, item: "bottle"}
+	tag4 := securityTag{status: active, item: "compass"}
+
+	//  - Store them in a slice or array
+	tags := []securityTag{tag1, tag2, tag3, tag4}
+	fmt.Println(tags)
+
+	//  - Deactivate any one security tag in the array/slice
+	statusChange(&tags[2])
+	fmt.Println(tags)
+
+	checkout(tags)
+	fmt.Println(tags)
 }
