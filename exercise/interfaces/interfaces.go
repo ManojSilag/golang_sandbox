@@ -21,6 +21,38 @@ package main
 
 import "fmt"
 
-func main() {
+type Vehicles interface {
+	Lift()
+}
 
+type Vehicle struct {
+	name, model string
+}
+
+func (v Vehicle) Lift() {
+	switch v.name {
+	case "Motorcycles":
+		fmt.Printf("--%v small lifts\n", v.name)
+	case "Cars":
+		fmt.Printf("--%v standard lifts\n", v.name)
+	case "Trucks":
+		fmt.Printf("--%v large lifts\n", v.name)
+	default:
+		panic("Unidentified Vehicle")
+	}
+}
+
+func liftVehicles(wheelers []Vehicles) {
+	for i := 0; i < len(wheelers); i++ {
+		v := wheelers[i]
+		fmt.Println("--Vehile lifting----")
+		v.Lift()
+
+	}
+}
+
+func main() {
+	wheelers := []Vehicles{Vehicle{name: "Motorcycles", model: "xox"},
+		Vehicle{name: "Cars", model: "xox"}}
+	liftVehicles(wheelers)
 }
